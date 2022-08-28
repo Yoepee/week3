@@ -1,5 +1,21 @@
 {
-    "posts": [
-    ],
-    "comments": []
-  }
+  "posts": [
+    {
+      "id": "id48",
+      "writer": "중입니다",
+      "title": "추가하기",
+      "body": "실험아멘아멘",
+      "date": "2022.8.26",
+      "count": 0
+    },
+    {
+      "id": "id34",
+      "writer": "확인",
+      "title": "테스트",
+      "body": "하는중입니다",
+      "date": "2022.8.26",
+      "count": 0
+    }
+  ],
+  "comments": []
+}
