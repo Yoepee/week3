@@ -5,7 +5,7 @@ export const __getPosts = createAsyncThunk(
     "posts/getPosts",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(process.env.REACT_APP_POSTS_HOST);
+            const data =  await axios.get("https://desolate-reef-97221.herokuapp.com/posts");
             return thunkAPI.fulfillWithValue(data.data);
           } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -23,22 +23,22 @@ export const posts = createSlice({
     reducers:{
         createPost(state, action){
           state.posts.push(action.payload);
-          axios.post(process.env.REACT_APP_POSTS_HOST, action.payload );
+          axios.post("https://desolate-reef-97221.herokuapp.com/posts", action.payload );
         },
         removePost(state, action){
           let  index = state.posts.findIndex(post =>  post.id === action.payload);
 			    state.posts.splice(index,1);
-          axios.delete(`${process.env.REACT_APP_POSTS_HOST}/${action.payload}`);
+          axios.delete(`https://desolate-reef-97221.herokuapp.com/posts/${action.payload}`);
         },
         updatePost(state, action){
           let  index = state.posts.findIndex(post =>  post.id === action.payload.id);
 			    state.posts.splice(index, 1, action.payload);
-          axios.patch(`${process.env.REACT_APP_POSTS_HOST}/${action.payload.id}`, action.payload);
+          axios.patch(`https://desolate-reef-97221.herokuapp.com/posts/${action.payload.id}`, action.payload);
         },
         likePost(state, action){
           let index = state.posts.findIndex(post => post.id === action.payload.id);
 			    state.posts[index].count +=1;
-          axios.patch(`${process.env.REACT_APP_POSTS_HOST}/${action.payload.id}`, action.payload);
+          axios.patch(`https://desolate-reef-97221.herokuapp.com/posts/${action.payload.id}`, action.payload);
         },
     },
     extraReducers: {

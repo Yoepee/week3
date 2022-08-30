@@ -17,7 +17,7 @@ const Detail = () =>{
     let post = posts.find((post)=>{
       return String(post.id) === id;
     })
-    
+
     useEffect(() => {
         dispatch(__getPosts());
     }, [dispatch]);

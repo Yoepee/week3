@@ -5,7 +5,7 @@ export const __getComments = createAsyncThunk(
     "comments/getComments",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(process.env.REACT_APP_COMMENTS_HOST);
+            const data =  await axios.get("https://desolate-reef-97221.herokuapp.com/comments");
             return thunkAPI.fulfillWithValue(data.data);
           } catch (error) {
             return thunkAPI.rejectWithValue(error);
@@ -22,17 +22,17 @@ export const comments = createSlice({
     reducers:{
         createComment(state, action){
             state.comments.push(action.payload);
-            axios.post(process.env.REACT_APP_COMMENTS_HOST,action.payload );
+            axios.post("https://desolate-reef-97221.herokuapp.com/comments",action.payload );
         },
         removeComment(state, action){
             let  index = state.comments.findIndex(comment =>  comment.id === action.payload);
-			state.comments.splice(index,1);
-            axios.delete(`${process.env.REACT_APP_COMMENTS_HOST}/${action.payload}`);
+			    state.comments.splice(index,1);
+            axios.delete(`https://desolate-reef-97221.herokuapp.com/comments/${action.payload}`);
         },
         updateComment(state, action){
             let  index = state.comments.findIndex(post =>  post.id === action.payload.id);
 			state.comments.splice(index, 1, action.payload);
-            axios.patch(`${process.env.REACT_APP_COMMENTS_HOST}/${action.payload.id}`, action.payload);
+            axios.patch(`https://desolate-reef-97221.herokuapp.com/comments/${action.payload.id}`, action.payload);
         }
     },
     extraReducers: {
