@@ -26,12 +26,12 @@ export const comments = createSlice({
         },
         removeComment(state, action){
             let  index = state.comments.findIndex(comment =>  comment.id === action.payload);
-			    state.comments.splice(index,1);
+			      state.comments.splice(index,1);
             axios.delete(`https://desolate-reef-97221.herokuapp.com/comments/${action.payload}`);
         },
         updateComment(state, action){
             let  index = state.comments.findIndex(post =>  post.id === action.payload.id);
-			state.comments.splice(index, 1, action.payload);
+			      state.comments.splice(index, 1, action.payload);
             axios.patch(`https://desolate-reef-97221.herokuapp.com/comments/${action.payload.id}`, action.payload);
         }
     },
